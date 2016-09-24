@@ -1,17 +1,15 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
+const Landing = require('./Landing')
+const { Router, Route, hashHistory } = require('react-router')
 
 // this is a function expression for quick display to screen
 // if I need to declare a variable (const) then add return back
 
 const App = () => ( 
-  <div className='app-container'>
-    <div className='home-info'>
-      <h1 className='title'>svideo</h1>
-      <input className='search' type='text' placeholder='Search' />
-      <button className='browse-all'> or Browse All</button>
-    </div>
-  </div>
+  <Router history ={hashHistory}>
+    <Route path='/' component={Landing} />
+  </Router>
 )
 
 ReactDOM.render(<App />, document.getElementById('app'))
