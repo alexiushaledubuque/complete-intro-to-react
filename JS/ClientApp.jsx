@@ -5,10 +5,11 @@ const { Router, Route, hashHistory } = require('react-router')
 const Search = require('./Search')
 
 // this is a function expression for quick display to screen
-// if I need to declare a variable (const) then add return back
+// if I need to declare a variable (const) then add return syntax back
+// Shift-CMD-P to install js packages
 
 const App = () => ( 
-  <Router history ={hashHistory}>
+  <Router history={hashHistory}>
     <Route path='/' component={Landing} />
     <Route path='/search' component={Search} />
   </Router>
