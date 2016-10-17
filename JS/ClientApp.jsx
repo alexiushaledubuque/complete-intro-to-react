@@ -1,4 +1,4 @@
-// Main .jsx for app
+// Main .jsx for the app
 
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -9,8 +9,7 @@ const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const Search = require('./Search')
 const Layout = require('./Layout')
 
-
-// this is a function expression for quick display to screen
+// 'const App = () => ()' is a function expression for quick display to screen
 // if I need to declare a variable (const) then add return syntax back
 // Shift-CMD-P to install js packages
 // Individual routes listed under Router
@@ -20,7 +19,7 @@ const Layout = require('./Layout')
 const App = () => (
   <Router history={hashHistory}>
     <Route path='/' component={Layout}>
-      <IndexRoute component={Landing} />  
+      <IndexRoute component={Landing} />
       <Route path='/search' component={Search} />
     </Route>
   </Router>

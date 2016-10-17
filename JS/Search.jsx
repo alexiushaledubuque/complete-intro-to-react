@@ -13,15 +13,14 @@ const Search = React.createClass({
     }
   },
   handleSearchTermEvent (event) {
-    this.setState({ searchTerm: event.target.value})
+    this.setState({ searchTerm: event.target.value })
   },
   render () {
-    return (    
+    return (
       <div className='container'>
         <header className='header'>
           <h1 className='brand'>svideo</h1>
-          <input value={this.state.searchTerm} className='search-input' type=
-            'text' placeholder='Search' onChange={this.handleSearchTermEvent} 
+          <input value={this.state.searchTerm} className='search-input' type='text' placeholder='Search' onChange={this.handleSearchTermEvent}
             />
         </header>
         <div className='shows'>
