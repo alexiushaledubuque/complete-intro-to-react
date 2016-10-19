@@ -36,7 +36,9 @@ describe('Testing <Search /> component', () => {
   })
 
   it('should filter correctly given new state', () => {
-    const wrapper = mount(<Search />)
+    // using mount verses shallow because shallow doesn't allow interaction
+    // use shallow when you can; but, mount when you must. mount is slower
+    const wrapper = mount(<Search />) 
     const input = wrapper.find('.search-input')
     input.node.value = 'house'
     input.simulate('change')
@@ -44,3 +46,21 @@ describe('Testing <Search /> component', () => {
     expect(wrapper.find('.show-card').length).to.equal(2)
   })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

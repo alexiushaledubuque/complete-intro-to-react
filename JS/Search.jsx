@@ -1,9 +1,8 @@
 const React = require('react')
 const ShowCard = require('./ShowCard')
-const data = require('../public/data')
+const { arrayOf, object } = React.PropTypes
 
 // Spread Operator {...show} grabs all properties of show
-
 // another format is class Search extends React.Component
 
 const Search = React.createClass({
@@ -11,6 +10,9 @@ const Search = React.createClass({
     return {
       searchTerm: ''
     }
+  },
+  propTypes: {
+    route: object
   },
   handleSearchTermEvent (event) {
     this.setState({ searchTerm: event.target.value })
@@ -24,7 +26,7 @@ const Search = React.createClass({
             />
         </header>
         <div className='shows'>
-          {data.shows
+          {this.props.route.shows
             .filter((show) => `${show.title} ${show.description}`
               .toUpperCase()
               .indexOf(this.state.searchTerm.toUpperCase()) >= 0)
