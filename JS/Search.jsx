@@ -1,9 +1,12 @@
 const React = require('react')
 const ShowCard = require('./ShowCard')
-const { arrayOf, object } = React.PropTypes
+const { object } = React.PropTypes
+const Header = require('./Header')
 
 // Spread Operator {...show} grabs all properties of show
 // another format is class Search extends React.Component
+
+// #21 this.setState({ searchTerm: searchTerm }) SAME AS this.setState({ searchTerm }) ES6 functionality
 
 const Search = React.createClass({
   getInitialState () {
@@ -14,17 +17,17 @@ const Search = React.createClass({
   propTypes: {
     route: object
   },
-  handleSearchTermEvent (event) {
-    this.setState({ searchTerm: event.target.value })
+  handleSearchTermChange (searchTerm) {
+    this.setState({ searchTerm })
   },
   render () {
     return (
       <div className='container'>
-        <header className='header'>
-          <h1 className='brand'>svideo</h1>
-          <input value={this.state.searchTerm} className='search-input' type='text' placeholder='Search' onChange={this.handleSearchTermEvent}
-            />
-        </header>
+        <Header 
+          handleSearchTermChange={this.handleSearchTermChange} 
+          searchTerm={this.state.searchTerm}
+          showSearch 
+        />
         <div className='shows'>
           {this.props.route.shows
             .filter((show) => `${show.title} ${show.description}`
