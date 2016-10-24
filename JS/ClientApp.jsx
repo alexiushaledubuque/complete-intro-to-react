@@ -10,6 +10,9 @@ const Details = require('./Details')
 // Destructuring { Router, Route, hashHistory }
 const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const { shows } = require('../public/data')
+const { store } = require('./Store')
+const { Provider } = require('react-redux')
+
 
 // 'const App = () => ()' is a function expression for quick display to screen
 // if I need to declare a variable (const) then add return syntax back
@@ -33,13 +36,15 @@ const App = React.createClass({
   },
   render () {
     return (
-      <Router history={hashHistory}>
-        <Route path='/' component={Layout}>
-          <IndexRoute component={Landing} />
-          <Route path='/search' component={Search} shows={shows} />
-          <Route path='/details/:id' component={Details} onEnter={this.assignShow} />
-        </Route>
-      </Router>
+      <Provider store={store}>
+        <Router history={hashHistory}>
+          <Route path='/' component={Layout}>
+            <IndexRoute component={Landing} />
+            <Route path='/search' component={Search} shows={shows} />
+            <Route path='/details/:id' component={Details} onEnter={this.assignShow} />
+          </Route>
+        </Router>
+      </Provider>
     )
   }
 })
