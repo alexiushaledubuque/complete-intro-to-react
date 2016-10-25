@@ -6,6 +6,7 @@ const Search = require('../js/Search')
 const ShowCard = require('../js/ShowCard')
 const { shallow, mount } = require('enzyme')
 const { shows } = require('../public/data')
+const { store, rootReducer } = require('../js/Store')
 
 // describe('Testing <Search /> component', () => {
 //   it('should pass', () => {
@@ -23,7 +24,7 @@ const { shows } = require('../public/data')
 // putting the 'x' in front of it comments out the test
 
 // testing if the Search gets rendered - not it's children (Showcard)
-describe('Testing <Search /> component', () => {
+xdescribe('Testing <Search /> component', () => {
   it('should render the brand', () => {
     const wrapper = shallow(<Search />)
     //console.log(wrapper.debug()) If I want to see all elements processed
@@ -46,6 +47,18 @@ describe('Testing <Search /> component', () => {
     expect(wrapper.find('.show-card').length).to.equal(2)
   })
 })
+
+describe('Store', () => {
+  it('should bootstrap', () => {
+    const state = rootReducer(undefined, { type: '@@redux/INIT' })
+    expect(state).to.deep.equal({ searchTerm: '' })
+  })
+  it('should handle setSearchTerm actions', () => {
+    const state = rootReducer({ searchTerm: 'some random string' }, { type: 'setSearchTerm', value: 'correct string' })
+    expect (state).to.deep.equal({ searchTerm: 'correct string' })
+  })
+})
+
 
 
 

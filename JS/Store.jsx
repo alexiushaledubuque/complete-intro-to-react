@@ -25,7 +25,10 @@ const reduceSearchTerm = (state=initialState, action) => {
     return newState
 }
 
-const store = redux.createStore(rootReducer)
+const store = redux.createStore(rootReducer, initialState, redux.compose(
+  typeof window === 'object' &&  typeof window.devToolsExtension !== 'undefined' 
+    ? window.devToolsExtension() : (f) => f
+))
 
 const mapStateToProps = (state) => { 
   return { searchTerm: state.searchTerm }
@@ -41,7 +44,7 @@ const mapDispatchtoProps = (dispatch) => {
 
 const connector = reactRedux.connect(mapStateToProps, mapDispatchtoProps)
 
-module.exports = { connector, store }
+module.exports = { connector, store, rootReducer }
 
 
 
