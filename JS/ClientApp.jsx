@@ -1,7 +1,6 @@
 // Main .jsx for the app
 
 const React = require('react')
-const ReactDOM = require('react-dom')
 const Landing = require('./Landing')
 const Search = require('./Search')
 const Layout = require('./Layout')
@@ -36,6 +35,4 @@ const App = React.createClass({
   }
 })
 
-// ReactDom.render is required in the main app file
-
-ReactDOM.render(<App />, document.getElementById('app'))
+module.exports = App
