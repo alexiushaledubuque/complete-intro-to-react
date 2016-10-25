@@ -9,7 +9,6 @@ const Details = require('./Details')
 
 // Destructuring { Router, Route, hashHistory }
 const { Router, Route, IndexRoute, hashHistory } = require('react-router')
-const { shows } = require('../public/data')
 const { store } = require('./Store')
 const { Provider } = require('react-redux')
 
@@ -22,25 +21,13 @@ const { Provider } = require('react-redux')
 // Search is passed as the children
 
 const App = React.createClass({
-  assignShow (nextState, replace) {
-    // notes are incorrect
-    const showArray = shows.filter( (show) => show.imdbID === nextState.params.id )
-
-    if (showArray.length < 1) {
-      return replace('/')
-    }
-     
-    // I have 2 objects, I want to take all of the properties in showArray and put them into nextState.params
-    Object.assign(nextState.params, showArray[0])
-    return nextState
-  },
   render () {
     return (
       <Provider store={store}>
         <Router history={hashHistory}>
           <Route path='/' component={Layout}>
             <IndexRoute component={Landing} />
-            <Route path='/search' component={Search} shows={shows} />
+            <Route path='/search' component={Search} />
             <Route path='/details/:id' component={Details} onEnter={this.assignShow} />
           </Route>
         </Router>
